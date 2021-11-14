@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
     new TabItem(Icons.notifications, "Notifications", Colors.cyan),
   ]);
 
-  CircularBottomNavigationController _navigationController;
+  CircularBottomNavigationController? _navigationController;
 
   @override
   void initState() {
@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget bodyContainer() {
     Color selectedColor = tabItems[selectedPos].circleColor;
-    String slogan;
+    String slogan = '';
     switch (selectedPos) {
       case 0:
         slogan = "Familly, Happiness, Food";
@@ -88,10 +88,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       onTap: () {
-        if (_navigationController.value == tabItems.length - 1) {
-          _navigationController.value = 0;
+        if (_navigationController!.value == tabItems.length - 1) {
+          _navigationController!.value = 0;
         } else {
-          _navigationController.value++;
+          _navigationController!.value++;
         }
       },
     );
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
       selectedCallback: (int selectedPos) {
         setState(() {
           this.selectedPos = selectedPos;
-          print(_navigationController.value);
+          print(_navigationController!.value);
         });
       },
     );
@@ -116,6 +116,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void dispose() {
     super.dispose();
-    _navigationController.dispose();
+    _navigationController!.dispose();
   }
 }
